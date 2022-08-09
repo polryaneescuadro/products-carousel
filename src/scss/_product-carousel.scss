@@ -1,0 +1,403 @@
+.prod-carousel-item {
+    text-align: center;
+    padding: 10px 15px;
+    h4 {
+        font-size: 20px;
+        line-height: 1.25;
+        span {
+            display: block;
+        }
+    }
+    .price {
+        font-weight: 600;
+        font-size: 20px;
+        color: $primary-color;
+        s {
+            color: $black;
+            font-weight: 400;
+        }
+    }
+    .ratings {
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        font-size: 14px;
+        line-height: 1.14;
+        margin-bottom: 10px;
+        .star {
+            width: 16px;
+            margin-right: 4px;
+        }
+        a {
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 1.14;
+            color: $primary-color;
+            margin-left: 10px;
+        }
+    }
+}
+.product-image-wrapper {
+    background: $l-color;
+    height: 270px;
+    margin-bottom: 10px;
+    .badge {
+        top: 0px;
+        right: -10px;
+        display: inline-block;
+        max-height: 86px;
+    }
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 20px;
+    opacity: 1;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: $l-color;
+    padding: 8px 12px;
+    width: 40px;
+    height: 40px;
+    background-size: 35%;
+}
+.carousel-control-next-icon {
+    background-image: url(next-arrow.svg);
+}
+.carousel-control-prev-icon {
+    background-image: url(prev-arrow.svg);
+}
+
+@include breakpoint($mobile, $medium-mobile) {
+    .carousel-inner {
+        .active.col-sm-6.carousel-item {
+            + {
+                .carousel-item {
+                    + {
+                        .carousel-item {
+                            position: absolute;
+                            top: 0;
+                            right: -50%;
+                            z-index: -1;
+                            display: block;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@include breakpoint($medium-mobile, tablet) {
+	.carousel-inner {
+		.active.col-md-4.carousel-item {
+			+ {
+				.carousel-item {
+					+ {
+						.carousel-item {
+							+ {
+								.carousel-item {
+									position: absolute;
+									top: 0;
+									right: -33.3333%;
+									z-index: -1;
+									display: block;
+									visibility: visible;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@include breakpoint($mobile, $medium-mobile) {
+	.carousel-inner {
+		.active.col-sm-6.carousel-item {
+			+ {
+				.carousel-item {
+					+ {
+						.carousel-item {
+							position: absolute;
+							top: 0;
+							right: -50%;
+							z-index: -1;
+							display: block;
+							visibility: visible;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@include min-breakpoint($mobile) {
+	.carousel-item {
+		margin-right: 0;
+	}
+	.carousel-inner {
+		.active {
+			+ {
+				.carousel-item {
+					display: block;
+				}
+			}
+		}
+		.carousel-item.active {
+			&:not(.carousel-item-right) {
+				&:not(.carousel-item-left) {
+					transition: none;
+					+ {
+						.carousel-item {
+							transition: none;
+						}
+					}
+				}
+			}
+		}
+		.carousel-item-next {
+			position: relative;
+			transform: translate3d(0, 0, 0);
+		}
+		.carousel-item-prev.carousel-item-right {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			display: block;
+			visibility: visible;
+		}
+	}
+	.active.carousel-item-left {
+		+ {
+			.carousel-item-next.carousel-item-left {
+				position: relative;
+				transform: translate3d(-100%, 0, 0);
+				visibility: visible;
+			}
+		}
+	}
+	.carousel-item-next.carousel-item-left {
+		+ {
+			.carousel-item {
+				position: relative;
+				transform: translate3d(-100%, 0, 0);
+				visibility: visible;
+				+ {
+					.carousel-item {
+						position: relative;
+						transform: translate3d(-100%, 0, 0);
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+	.active.carousel-item-right {
+		+ {
+			.carousel-item-prev.carousel-item-right {
+				position: relative;
+				transform: translate3d(100%, 0, 0);
+				visibility: visible;
+				display: block;
+				visibility: visible;
+			}
+		}
+	}
+	.carousel-item-prev.carousel-item-right {
+		+ {
+			.carousel-item {
+				position: relative;
+				transform: translate3d(100%, 0, 0);
+				visibility: visible;
+				display: block;
+				visibility: visible;
+				+ {
+					.carousel-item {
+						position: relative;
+						transform: translate3d(100%, 0, 0);
+						visibility: visible;
+						display: block;
+						visibility: visible;
+					}
+				}
+			}
+		}
+	}
+}
+@include min-breakpoint($medium-mobile) {
+	.carousel-inner {
+		.active {
+			+ {
+				.carousel-item {
+					+ {
+						.carousel-item {
+							display: block;
+						}
+					}
+				}
+			}
+		}
+		.carousel-item.active {
+			&:not(.carousel-item-right) {
+				&:not(.carousel-item-left) {
+					+ {
+						.carousel-item {
+							+ {
+								.carousel-item {
+									transition: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.carousel-item-next {
+			position: relative;
+			transform: translate3d(0, 0, 0);
+		}
+	}
+	.carousel-item-next.carousel-item-left {
+		+ {
+			.carousel-item {
+				+ {
+					.carousel-item {
+						+ {
+							.carousel-item {
+								position: relative;
+								transform: translate3d(-100%, 0, 0);
+								visibility: visible;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.carousel-item-prev.carousel-item-right {
+		+ {
+			.carousel-item {
+				+ {
+					.carousel-item {
+						+ {
+							.carousel-item {
+								position: relative;
+								transform: translate3d(100%, 0, 0);
+								visibility: visible;
+								display: block;
+								visibility: visible;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@include min-breakpoint($tablet) {
+	.carousel-inner {
+		.active {
+			+ {
+				.carousel-item {
+					+ {
+						.carousel-item {
+							+ {
+								.carousel-item {
+									display: block;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.carousel-item.active {
+			&:not(.carousel-item-right) {
+				&:not(.carousel-item-left) {
+					+ {
+						.carousel-item {
+							+ {
+								.carousel-item {
+									+ {
+										.carousel-item {
+											transition: none;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.active.col-lg-3.carousel-item {
+			+ {
+				.carousel-item {
+					+ {
+						.carousel-item {
+							+ {
+								.carousel-item {
+									+ {
+										.carousel-item {
+											position: absolute;
+											top: 0;
+											right: -25%;
+											z-index: -1;
+											display: block;
+											visibility: visible;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.carousel-item-next.carousel-item-left {
+		+ {
+			.carousel-item {
+				+ {
+					.carousel-item {
+						+ {
+							.carousel-item {
+								+ {
+									.carousel-item {
+										position: relative;
+										transform: translate3d(-100%, 0, 0);
+										visibility: visible;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.carousel-item-prev.carousel-item-right {
+		+ {
+			.carousel-item {
+				+ {
+					.carousel-item {
+						+ {
+							.carousel-item {
+								+ {
+									.carousel-item {
+										position: relative;
+										transform: translate3d(100%, 0, 0);
+										visibility: visible;
+										display: block;
+										visibility: visible;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

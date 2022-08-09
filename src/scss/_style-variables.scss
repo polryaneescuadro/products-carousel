@@ -1,0 +1,24 @@
+$primary-color: #D62E55;
+$secondary-color: #151515;
+$l-color: #FFF2F4;
+$white: #fff;
+$black: #000;
+
+$primary-font: "Poppins", sans-serif;
+
+$mobile: 576px;
+$tablet: 991px;
+$medium-mobile: 768px;
+$medium-desktop: 1200px;
+
+@mixin breakpoint($max-viewport, $min-viewport) {
+    @media only screen and (min-width: $min-viewport) and (max-width: $max-viewport) {
+      @content;
+    }
+}
+
+@mixin min-breakpoint($min-viewport) {
+  @media only screen and (min-width: $min-viewport) {
+    @content;
+  }
+}
