@@ -4,6 +4,10 @@ html, body, * {
     font-family: $primary-font;
 }
 
+.content-max {
+    max-width: 1440px;
+}
+
 .btn {
     cursor: pointer;
     margin-top: 10px;

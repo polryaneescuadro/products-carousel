@@ -22,3 +22,9 @@ $medium-desktop: 1200px;
     @content;
   }
 }
+
+@mixin max-breakpoint($max-viewport) {
+  @media only screen and (max-width: $max-viewport) {
+    @content;
+  }
+}

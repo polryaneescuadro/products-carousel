@@ -1,6 +1,21 @@
+#product-carousel-wrapper {
+	position: relative;
+}
+#product-carousel-wrapper{
+	.carousel-inner {
+		flex-wrap: nowrap;
+		justify-content: center;
+	}
+}
 .prod-carousel-item {
     text-align: center;
     padding: 10px 15px;
+	flex: 0 0 75%;
+	max-width: 75%;
+	@include min-breakpoint($mobile) {
+		flex: 0 0 35%;
+		max-width: 35%;
+	}
     h4 {
         font-size: 20px;
         line-height: 1.25;
@@ -52,6 +67,17 @@
 .carousel-control-prev, .carousel-control-next {
     width: 20px;
     opacity: 1;
+	z-index: 3;
+}
+.carousel-control-prev {
+	@include min-breakpoint($medium-mobile) {
+		left: -10px;
+	}
+}
+.carousel-control-next {
+	@include min-breakpoint($medium-mobile) {
+		right: -10px;
+	}
 }
 .carousel-control-next-icon, .carousel-control-prev-icon {
     background-color: $l-color;
@@ -67,40 +93,154 @@
     background-image: url(prev-arrow.svg);
 }
 
-@include breakpoint($mobile, $medium-mobile) {
-    .carousel-inner {
-        .active.col-sm-6.carousel-item {
-            + {
-                .carousel-item {
-                    + {
-                        .carousel-item {
-                            position: absolute;
-                            top: 0;
-                            right: -50%;
-                            z-index: -1;
-                            display: block;
-                            visibility: visible;
-                        }
-                    }
-                }
-            }
-        }
-    }
+.carousel-item {
+	margin-right: 0;
 }
-@include breakpoint($medium-mobile, tablet) {
-	.carousel-inner {
-		.active.col-md-4.carousel-item {
+
+.active.carousel-item-left {
+	+ {
+		.carousel-item-next.carousel-item-left {
+			position: relative;
+			transform: translate3d(-100%, 0, 0);
+			visibility: visible;
+		}
+	}
+}
+.carousel-item-next.carousel-item-left {
+	+ {
+		.carousel-item {
+			position: relative;
+			transform: translate3d(-100%, 0, 0);
+			visibility: visible;
+			+ {
+				.carousel-item {
+					position: relative;
+					transform: translate3d(-100%, 0, 0);
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+.active.carousel-item-right {
+	+ {
+		.carousel-item-prev.carousel-item-right {
+			position: relative;
+			transform: translate3d(100%, 0, 0);
+			visibility: visible;
+			display: block;
+			visibility: visible;
+		}
+	}
+}
+.carousel-item-prev.carousel-item-right {
+	+ {
+		.carousel-item {
+			position: relative;
+			transform: translate3d(100%, 0, 0);
+			visibility: visible;
+			display: block;
+			visibility: visible;
+			+ {
+				.carousel-item {
+					position: relative;
+					transform: translate3d(100%, 0, 0);
+					visibility: visible;
+					display: block;
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+
+
+.carousel-inner {
+	.active {
+		+ {
+			.carousel-item {
+				display: block;
+				+ {
+					.carousel-item {
+						display: block;
+						+ {
+							.carousel-item {
+								display: block;
+								@include max-breakpoint($mobile) {
+									display: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.carousel-item.active {
+		&:not(.carousel-item-right) {
+			&:not(.carousel-item-left) {
+				transition: none;
+				+ {
+					.carousel-item {
+						transition: none;
+						+ {
+							.carousel-item {
+								transition: none;
+								+ {
+									.carousel-item {
+										transition: none;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.active.col-lg-3.carousel-item {
+		+ {
+			.carousel-item {
+				+ {
+					.carousel-item {
+						+ {
+							.carousel-item {
+								+ {
+									.carousel-item {
+										position: absolute;
+										top: 0;
+										right: -25%;
+										z-index: -1;
+										display: block;
+										visibility: visible;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.carousel-item-next {
+		position: relative;
+		transform: translate3d(0, 0, 0);
+	}
+}
+.carousel-item-next.carousel-item-left {
+	+ {
+		.carousel-item {
 			+ {
 				.carousel-item {
 					+ {
 						.carousel-item {
+							position: relative;
+							transform: translate3d(-100%, 0, 0);
+							visibility: visible;
 							+ {
 								.carousel-item {
-									position: absolute;
-									top: 0;
-									right: -33.3333%;
-									z-index: -1;
-									display: block;
+									position: relative;
+									transform: translate3d(-100%, 0, 0);
 									visibility: visible;
 								}
 							}
@@ -111,287 +251,25 @@
 		}
 	}
 }
-@include breakpoint($mobile, $medium-mobile) {
-	.carousel-inner {
-		.active.col-sm-6.carousel-item {
+.carousel-item-prev.carousel-item-right {
+	+ {
+		.carousel-item {
 			+ {
 				.carousel-item {
 					+ {
 						.carousel-item {
-							position: absolute;
-							top: 0;
-							right: -50%;
-							z-index: -1;
+							position: relative;
+							transform: translate3d(100%, 0, 0);
+							visibility: visible;
 							display: block;
 							visibility: visible;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-@include min-breakpoint($mobile) {
-	.carousel-item {
-		margin-right: 0;
-	}
-	.carousel-inner {
-		.active {
-			+ {
-				.carousel-item {
-					display: block;
-				}
-			}
-		}
-		.carousel-item.active {
-			&:not(.carousel-item-right) {
-				&:not(.carousel-item-left) {
-					transition: none;
-					+ {
-						.carousel-item {
-							transition: none;
-						}
-					}
-				}
-			}
-		}
-		.carousel-item-next {
-			position: relative;
-			transform: translate3d(0, 0, 0);
-		}
-		.carousel-item-prev.carousel-item-right {
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: -1;
-			display: block;
-			visibility: visible;
-		}
-	}
-	.active.carousel-item-left {
-		+ {
-			.carousel-item-next.carousel-item-left {
-				position: relative;
-				transform: translate3d(-100%, 0, 0);
-				visibility: visible;
-			}
-		}
-	}
-	.carousel-item-next.carousel-item-left {
-		+ {
-			.carousel-item {
-				position: relative;
-				transform: translate3d(-100%, 0, 0);
-				visibility: visible;
-				+ {
-					.carousel-item {
-						position: relative;
-						transform: translate3d(-100%, 0, 0);
-						visibility: visible;
-					}
-				}
-			}
-		}
-	}
-	.active.carousel-item-right {
-		+ {
-			.carousel-item-prev.carousel-item-right {
-				position: relative;
-				transform: translate3d(100%, 0, 0);
-				visibility: visible;
-				display: block;
-				visibility: visible;
-			}
-		}
-	}
-	.carousel-item-prev.carousel-item-right {
-		+ {
-			.carousel-item {
-				position: relative;
-				transform: translate3d(100%, 0, 0);
-				visibility: visible;
-				display: block;
-				visibility: visible;
-				+ {
-					.carousel-item {
-						position: relative;
-						transform: translate3d(100%, 0, 0);
-						visibility: visible;
-						display: block;
-						visibility: visible;
-					}
-				}
-			}
-		}
-	}
-}
-@include min-breakpoint($medium-mobile) {
-	.carousel-inner {
-		.active {
-			+ {
-				.carousel-item {
-					+ {
-						.carousel-item {
-							display: block;
-						}
-					}
-				}
-			}
-		}
-		.carousel-item.active {
-			&:not(.carousel-item-right) {
-				&:not(.carousel-item-left) {
-					+ {
-						.carousel-item {
 							+ {
 								.carousel-item {
-									transition: none;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		.carousel-item-next {
-			position: relative;
-			transform: translate3d(0, 0, 0);
-		}
-	}
-	.carousel-item-next.carousel-item-left {
-		+ {
-			.carousel-item {
-				+ {
-					.carousel-item {
-						+ {
-							.carousel-item {
-								position: relative;
-								transform: translate3d(-100%, 0, 0);
-								visibility: visible;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	.carousel-item-prev.carousel-item-right {
-		+ {
-			.carousel-item {
-				+ {
-					.carousel-item {
-						+ {
-							.carousel-item {
-								position: relative;
-								transform: translate3d(100%, 0, 0);
-								visibility: visible;
-								display: block;
-								visibility: visible;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-@include min-breakpoint($tablet) {
-	.carousel-inner {
-		.active {
-			+ {
-				.carousel-item {
-					+ {
-						.carousel-item {
-							+ {
-								.carousel-item {
+									position: relative;
+									transform: translate3d(100%, 0, 0);
+									visibility: visible;
 									display: block;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		.carousel-item.active {
-			&:not(.carousel-item-right) {
-				&:not(.carousel-item-left) {
-					+ {
-						.carousel-item {
-							+ {
-								.carousel-item {
-									+ {
-										.carousel-item {
-											transition: none;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		.active.col-lg-3.carousel-item {
-			+ {
-				.carousel-item {
-					+ {
-						.carousel-item {
-							+ {
-								.carousel-item {
-									+ {
-										.carousel-item {
-											position: absolute;
-											top: 0;
-											right: -25%;
-											z-index: -1;
-											display: block;
-											visibility: visible;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	.carousel-item-next.carousel-item-left {
-		+ {
-			.carousel-item {
-				+ {
-					.carousel-item {
-						+ {
-							.carousel-item {
-								+ {
-									.carousel-item {
-										position: relative;
-										transform: translate3d(-100%, 0, 0);
-										visibility: visible;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	.carousel-item-prev.carousel-item-right {
-		+ {
-			.carousel-item {
-				+ {
-					.carousel-item {
-						+ {
-							.carousel-item {
-								+ {
-									.carousel-item {
-										position: relative;
-										transform: translate3d(100%, 0, 0);
-										visibility: visible;
-										display: block;
-										visibility: visible;
-									}
+									visibility: visible;
 								}
 							}
 						}
